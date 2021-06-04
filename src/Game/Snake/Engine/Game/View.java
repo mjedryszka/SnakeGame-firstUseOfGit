@@ -2,14 +2,13 @@ package Game.Snake.Engine.Game;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 /**
  * Created by Home on 2021-05-30.
  */
-public class View implements KeyListener{
+public class View {
     private JFrame viewFrame;
     private JPanel mainPanel;
     private JPanel menuPanel;
@@ -38,15 +37,15 @@ public class View implements KeyListener{
          * Create boxes
          */
         gamePanel.setLayout(new GridBagLayout());
-        gamePanel.addKeyListener(this);
-        gamePanel.setFocusable(true);
+//        gamePanel.addKeyListener(keyListener);
+//        gamePanel.setFocusable(true);
 
-//        startGameButton.addKeyListener(this);
+
         viewFrame.pack();
         gamePanel.requestFocusInWindow();
         viewFrame.setVisible(true);
     }
-    public void setupBoxes(ArrayList<Box> boxesList){
+    public void setupBoxes(ArrayList<Box> boxesList,KeyListener keyListener){
         for (Box box : boxesList){
             GridBagConstraints gamePanelConstraints = new GridBagConstraints();
             int columnNumber = box.getNumberOfColumn();
@@ -55,26 +54,30 @@ public class View implements KeyListener{
             gamePanelConstraints.gridy=rowNumber;
             gamePanel.add(box,gamePanelConstraints);
         }
+        gamePanel.addKeyListener(keyListener);
+        gamePanel.setFocusable(true);
+
         viewFrame.pack();
+        gamePanel.requestFocusInWindow();
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-        System.out.println("aaaa");
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        System.out.println("bbb");
-        System.out.println(e.getExtendedKeyCode());
-        System.out.println(e.getKeyChar());
-        System.out.println(e.getKeyCode());
-        System.out.println(e.getKeyLocation());
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
+//    @Override
+//    public void keyTyped(KeyEvent e) {
+//        System.out.println("aaaa");
+//
+//    }
+//
+//    @Override
+//    public void keyPressed(KeyEvent e) {
+//        System.out.println("bbb");
+//        System.out.println(e.getExtendedKeyCode());
+//        System.out.println(e.getKeyChar());
+//        System.out.println(e.getKeyCode());
+//        System.out.println(e.getKeyLocation());
+//    }
+//
+//    @Override
+//    public void keyReleased(KeyEvent e) {
+//
+//    }
 }

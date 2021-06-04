@@ -13,15 +13,40 @@ public class Engine {
     private int numberOfRowsInPanel = 50;
     private ArrayList<Box> boxes = new ArrayList<>();
     private ArrayList<Box> snakeBoxes = new ArrayList<>();
-    private Dimension boxDimension = new Dimension(15,15);
+    private Dimension boxDimension = new Dimension(15, 15);
 
     private Box box[][] = new Box[numberOfColumnsInPanel][numberOfRowsInPanel];
 
+    /**
+     * Move snake
+     */
+    public void moveSnake(int directionNumber) {
+        int snakeHeadNumberOfColumn = snakeBoxes.get(0).getNumberOfColumn();
+        int snakeHeadNumberOfRow = snakeBoxes.get(0).getNumberOfRow();
+        if (directionNumber == 37) {           //left
+            int snakeheadAfterMoveNumberOfColumn = snakeHeadNumberOfColumn-1;
+            int snakeheadAfterMoveNumberOfRow = snakeHeadNumberOfRow;
+        } else if (directionNumber == 38) {    //up
 
+        } else if (directionNumber == 39) {    //right
+
+        } else if (directionNumber == 40) {    //down
+
+        }
+    }
+    /**
+     * Move snake head (first snake box)
+     */
+    private void moveSnakeHead(int numberOfColumn,int numberOfRow){
+        
+    }
+    /**
+     * Create all boxes
+     */
     public void createBoxInEngine() {
         for (int columnNumber = 0; columnNumber < numberOfColumnsInPanel; columnNumber++) {
             for (int rowNumber = 0; rowNumber < numberOfRowsInPanel; rowNumber++) {
-                box[columnNumber][rowNumber] = new GrayBox(columnNumber,rowNumber,false,false);
+                box[columnNumber][rowNumber] = new GrayBox(columnNumber, rowNumber, false, false);
                 box[columnNumber][rowNumber].setBorder(BorderFactory.createLineBorder(Color.BLACK));
                 box[columnNumber][rowNumber].setBackground(Color.LIGHT_GRAY);
                 box[columnNumber][rowNumber].setPreferredSize(boxDimension);
@@ -30,7 +55,9 @@ public class Engine {
         }
         setColorInThreeStartBoxes();
         setColorInOneRandomBox();
+        moveSnakeHead();
     }
+
     /**
      * Set color in 1 random grayBox
      */
@@ -38,11 +65,11 @@ public class Engine {
         Random random = new Random();
         boolean boxIsGray = false;
         while (!boxIsGray) {
-        int randomNumberOfColumn = random.nextInt(numberOfColumnsInPanel + 1);
-        int randomNumberOfRow = random.nextInt(numberOfRowsInPanel + 1);
-        /**
-         * If on boxes list is this graybox then change it to green
-         */
+            int randomNumberOfColumn = random.nextInt(numberOfColumnsInPanel + 1);
+            int randomNumberOfRow = random.nextInt(numberOfRowsInPanel + 1);
+            /**
+             * If on boxes list is this graybox then change it to green
+             */
             if (!box[randomNumberOfColumn][randomNumberOfRow].isGreen()) {
                 boxes.remove(box[randomNumberOfColumn][randomNumberOfRow]);
                 box[randomNumberOfColumn][randomNumberOfRow] = new GreenBox(randomNumberOfColumn, randomNumberOfRow, true, false);
@@ -54,17 +81,18 @@ public class Engine {
             }
         }
     }
+
     /**
      * Set color in 3 boxes (start snake)
      */
-    private void setColorInThreeStartBoxes(){
+    private void setColorInThreeStartBoxes() {
         /**
          * Create first snake box(moveable)
          */
         int firstBoxNumberOfColumn = 45;
         int firstBoxNumberOfRow = 26;
         boxes.remove(box[firstBoxNumberOfColumn][firstBoxNumberOfRow]);
-        box[firstBoxNumberOfColumn][firstBoxNumberOfRow] = new FirstSnakeBox(firstBoxNumberOfColumn,firstBoxNumberOfRow,true,true);
+        box[firstBoxNumberOfColumn][firstBoxNumberOfRow] = new FirstSnakeBox(firstBoxNumberOfColumn, firstBoxNumberOfRow, true, true);
         box[firstBoxNumberOfColumn][firstBoxNumberOfRow].setBackground(Color.GREEN);
         box[firstBoxNumberOfColumn][firstBoxNumberOfRow].setBorder(BorderFactory.createLineBorder(Color.BLACK));
         box[firstBoxNumberOfColumn][firstBoxNumberOfRow].setPreferredSize(boxDimension);
@@ -73,21 +101,23 @@ public class Engine {
         /**
          * Create two second snake boxes(follow first)
          */
-        createNextSnakeBox(firstBoxNumberOfColumn,firstBoxNumberOfRow-1);
-        createNextSnakeBox(firstBoxNumberOfColumn,firstBoxNumberOfRow-2);
+        createNextSnakeBox(firstBoxNumberOfColumn, firstBoxNumberOfRow - 1);
+        createNextSnakeBox(firstBoxNumberOfColumn, firstBoxNumberOfRow - 2);
     }
+
     /**
-     *Create next snake box
+     * Create next snake box
      */
-    private void createNextSnakeBox(int numberOfColumn,int numberOfRow){
+    private void createNextSnakeBox(int numberOfColumn, int numberOfRow) {
         boxes.remove(box[numberOfColumn][numberOfRow]);
-        box[numberOfColumn][numberOfRow] = new NextSnakeBoxes(numberOfColumn,numberOfRow,true,true);
+        box[numberOfColumn][numberOfRow] = new NextSnakeBoxes(numberOfColumn, numberOfRow, true, true);
         box[numberOfColumn][numberOfRow].setBackground(Color.GREEN);
         box[numberOfColumn][numberOfRow].setPreferredSize(boxDimension);
         box[numberOfColumn][numberOfRow].setBorder(BorderFactory.createLineBorder(Color.BLACK));
         snakeBoxes.add(box[numberOfColumn][numberOfRow]);
         boxes.add(box[numberOfColumn][numberOfRow]);
     }
+
     /**
      * Send list with boxes
      */
