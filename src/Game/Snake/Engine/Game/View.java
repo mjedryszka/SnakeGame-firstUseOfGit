@@ -37,8 +37,7 @@ public class View {
          * Create boxes
          */
         gamePanel.setLayout(new GridBagLayout());
-//        gamePanel.addKeyListener(keyListener);
-//        gamePanel.setFocusable(true);
+
 
 
         viewFrame.pack();
@@ -46,6 +45,7 @@ public class View {
         viewFrame.setVisible(true);
     }
     public void setupBoxes(ArrayList<Box> boxesList,KeyListener keyListener){
+        gamePanel.removeAll();
         for (Box box : boxesList){
             GridBagConstraints gamePanelConstraints = new GridBagConstraints();
             int columnNumber = box.getNumberOfColumn();
@@ -60,24 +60,4 @@ public class View {
         viewFrame.pack();
         gamePanel.requestFocusInWindow();
     }
-
-//    @Override
-//    public void keyTyped(KeyEvent e) {
-//        System.out.println("aaaa");
-//
-//    }
-//
-//    @Override
-//    public void keyPressed(KeyEvent e) {
-//        System.out.println("bbb");
-//        System.out.println(e.getExtendedKeyCode());
-//        System.out.println(e.getKeyChar());
-//        System.out.println(e.getKeyCode());
-//        System.out.println(e.getKeyLocation());
-//    }
-//
-//    @Override
-//    public void keyReleased(KeyEvent e) {
-//
-//    }
 }

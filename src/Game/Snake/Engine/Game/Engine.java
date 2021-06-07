@@ -24,8 +24,9 @@ public class Engine {
         int snakeHeadNumberOfColumn = snakeBoxes.get(0).getNumberOfColumn();
         int snakeHeadNumberOfRow = snakeBoxes.get(0).getNumberOfRow();
         if (directionNumber == 37) {           //left
-            int snakeheadAfterMoveNumberOfColumn = snakeHeadNumberOfColumn-1;
-            int snakeheadAfterMoveNumberOfRow = snakeHeadNumberOfRow;
+            int snakeHeadAfterMoveNumberOfColumn = snakeHeadNumberOfColumn -1;
+            int snakeHeadAfterMoveNumberOfRow = snakeHeadNumberOfRow;
+            moveSnakeHead(snakeHeadAfterMoveNumberOfColumn,snakeHeadAfterMoveNumberOfRow);
         } else if (directionNumber == 38) {    //up
 
         } else if (directionNumber == 39) {    //right
@@ -37,8 +38,42 @@ public class Engine {
     /**
      * Move snake head (first snake box)
      */
-    private void moveSnakeHead(int numberOfColumn,int numberOfRow){
-        
+    private void moveSnakeHead(int snakeHeadAfterMoveNumberOfColumn,int snakeHeadAfterMoveNumberOfRow){
+        System.out.println(boxes.size());
+        System.out.println(snakeBoxes.size());
+        int snakeHeadBeforeMoveNumberOfColumn = snakeBoxes.get(0).getNumberOfColumn();
+        int snakeHeadBeforeMoveNumberOfRow = snakeBoxes.get(0).getNumberOfRow();
+        boxes.remove(box[snakeHeadAfterMoveNumberOfColumn][snakeHeadAfterMoveNumberOfRow]);
+        snakeBoxes.add(box[snakeHeadAfterMoveNumberOfColumn][snakeHeadAfterMoveNumberOfRow] = new FirstSnakeBox(snakeHeadAfterMoveNumberOfColumn, snakeHeadAfterMoveNumberOfRow, true, true));
+        box[snakeHeadAfterMoveNumberOfColumn][snakeHeadAfterMoveNumberOfRow].setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        box[snakeHeadAfterMoveNumberOfColumn][snakeHeadAfterMoveNumberOfRow].setBackground(Color.GREEN);
+        box[snakeHeadAfterMoveNumberOfColumn][snakeHeadAfterMoveNumberOfRow].setPreferredSize(boxDimension);
+        boxes.add(box[snakeHeadAfterMoveNumberOfColumn][snakeHeadAfterMoveNumberOfRow]);
+        snakeBoxes.remove(0);
+        for (int i=1;i<snakeBoxes.size();i++){
+            boxes.remove(box[snakeHeadBeforeMoveNumberOfColumn][snakeHeadBeforeMoveNumberOfRow]);
+            snakeBoxes.add(box[snakeHeadBeforeMoveNumberOfColumn][snakeHeadBeforeMoveNumberOfRow] = new NextSnakeBoxes(snakeHeadBeforeMoveNumberOfColumn, snakeHeadBeforeMoveNumberOfRow, true, true));
+            box[snakeHeadBeforeMoveNumberOfColumn][snakeHeadBeforeMoveNumberOfRow].setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            box[snakeHeadBeforeMoveNumberOfColumn][snakeHeadBeforeMoveNumberOfRow].setBackground(Color.GREEN);
+            box[snakeHeadBeforeMoveNumberOfColumn][snakeHeadBeforeMoveNumberOfRow].setPreferredSize(boxDimension);
+            boxes.add(box[snakeHeadBeforeMoveNumberOfColumn][snakeHeadBeforeMoveNumberOfRow]);
+            System.out.println("aaa");
+
+            snakeHeadBeforeMoveNumberOfColumn = snakeBoxes.get(0).getNumberOfColumn();
+            snakeHeadBeforeMoveNumberOfRow = snakeBoxes.get(0).getNumberOfRow();
+            snakeBoxes.remove(0);
+            System.out.println("bbb");
+
+        }
+        boxes.remove(box[snakeHeadBeforeMoveNumberOfColumn][snakeHeadBeforeMoveNumberOfRow]);
+        box[snakeHeadBeforeMoveNumberOfColumn][snakeHeadBeforeMoveNumberOfRow] = new GrayBox(snakeHeadBeforeMoveNumberOfColumn,snakeHeadBeforeMoveNumberOfRow,false,false);
+        box[snakeHeadBeforeMoveNumberOfColumn][snakeHeadBeforeMoveNumberOfRow].setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        box[snakeHeadBeforeMoveNumberOfColumn][snakeHeadBeforeMoveNumberOfRow].setBackground(Color.LIGHT_GRAY);
+        box[snakeHeadBeforeMoveNumberOfColumn][snakeHeadBeforeMoveNumberOfRow].setPreferredSize(boxDimension);
+        boxes.add(box[snakeHeadBeforeMoveNumberOfColumn][snakeHeadBeforeMoveNumberOfRow]);
+        System.out.println(snakeBoxes.get(0));
+        System.out.println(boxes.size());
+        System.out.println(snakeBoxes.size());
     }
     /**
      * Create all boxes
@@ -55,7 +90,6 @@ public class Engine {
         }
         setColorInThreeStartBoxes();
         setColorInOneRandomBox();
-        moveSnakeHead();
     }
 
     /**
@@ -65,8 +99,8 @@ public class Engine {
         Random random = new Random();
         boolean boxIsGray = false;
         while (!boxIsGray) {
-            int randomNumberOfColumn = random.nextInt(numberOfColumnsInPanel + 1);
-            int randomNumberOfRow = random.nextInt(numberOfRowsInPanel + 1);
+            int randomNumberOfColumn = random.nextInt(numberOfColumnsInPanel);
+            int randomNumberOfRow = random.nextInt(numberOfRowsInPanel);
             /**
              * If on boxes list is this graybox then change it to green
              */
