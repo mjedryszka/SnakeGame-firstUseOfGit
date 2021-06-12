@@ -37,15 +37,15 @@ public class View {
     /**
      *Create cells and add kye listener to game panel
      */
-    public void setUpCells(ArrayList<Box> boxesList, KeyListener keyListener){
+    public void setUpCells(ArrayList<Cell> boxesList, KeyListener keyListener){
         gamePanel.removeAll();
-        for (Box box : boxesList){
+        for (Cell cell : boxesList){
             GridBagConstraints gamePanelConstraints = new GridBagConstraints();
-            int columnNumber = box.getNumberOfColumn();
-            int rowNumber = box.getNumberOfRow();
+            int columnNumber = cell.getNumberOfColumn();
+            int rowNumber = cell.getNumberOfRow();
             gamePanelConstraints.gridx=columnNumber;
             gamePanelConstraints.gridy=rowNumber;
-            gamePanel.add(box,gamePanelConstraints);
+            gamePanel.add(cell,gamePanelConstraints);
         }
         gamePanel.remove(1);
         gamePanel.addKeyListener(keyListener);
@@ -57,7 +57,7 @@ public class View {
     /**
      *Move snake
      */
-    public void chagneSnakePosition(ArrayList<Box> boxesList,ArrayList<Integer> boxesNumberList){
+    public void chagneSnakePosition(ArrayList<Cell> boxesList,ArrayList<Integer> boxesNumberList){
         /**
          * Delete gray cells
          */
@@ -66,13 +66,13 @@ public class View {
         /**
          * Create new green cells
          */
-        for (Box box : boxesList){
+        for (Cell cell : boxesList){
             GridBagConstraints gamePanelConstraints = new GridBagConstraints();
-            int columnNumber = box.getNumberOfColumn();
-            int rowNumber = box.getNumberOfRow();
+            int columnNumber = cell.getNumberOfColumn();
+            int rowNumber = cell.getNumberOfRow();
             gamePanelConstraints.gridx=columnNumber;
             gamePanelConstraints.gridy=rowNumber;
-            gamePanel.add(box,gamePanelConstraints);
+            gamePanel.add(cell,gamePanelConstraints);
         }
         gamePanel.setFocusable(true);
         viewFrame.pack();

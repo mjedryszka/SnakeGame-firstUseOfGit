@@ -1,31 +1,32 @@
 package Game.Snake.Engine.Game;
 
 import javax.swing.*;
-import java.util.ArrayList;
+import java.awt.*;
 
 /**
  * Created by Home on 2021-05-30.
  */
-public abstract class Box extends JPanel {
+public abstract class Cell extends JPanel {
     private int numberOfColumn;
     private int numberOfRow;
-    private boolean isGreen;
+    private boolean isCatchCell;
     private boolean isPartOfSnake;
 
-    public Box(int numberOfColumn, int numberOfRow, boolean isGreen, boolean isPartOfSnake) {
+    public Cell(int numberOfColumn, int numberOfRow, Dimension cellDimension) {
         this.numberOfColumn = numberOfColumn;
         this.numberOfRow = numberOfRow;
-        this.isGreen = isGreen;
-        this.isPartOfSnake = isPartOfSnake;
-
+        this.isCatchCell = false;
+        this.isPartOfSnake = false;
+        setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        setPreferredSize(cellDimension);
     }
 
-    public boolean isGreen() {
-        return isGreen;
+    public boolean isCatchCell() {
+        return isCatchCell;
     }
 
     public void setIsGreen(boolean isGreen) {
-        this.isGreen = isGreen;
+        this.isCatchCell = isGreen;
     }
 
     public boolean isPartOfSnake() {

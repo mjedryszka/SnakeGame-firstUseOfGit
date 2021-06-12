@@ -1,6 +1,5 @@
 package Game.Snake.Engine.Game;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
@@ -11,81 +10,71 @@ import java.util.Random;
 public class Engine {
     private int numberOfColumnsInPanel = 90;
     private int numberOfRowsInPanel = 50;
-    private ArrayList<Box> boxes = new ArrayList<>();
-    private ArrayList<Box> snakeBoxes = new ArrayList<>();
+    private ArrayList<Cell> cells = new ArrayList<>();
+    private ArrayList<Cell> snakeCells = new ArrayList<>();
     private Dimension boxDimension = new Dimension(15, 15);
 
-    private Box box[][] = new Box[numberOfColumnsInPanel][numberOfRowsInPanel];
+    private Cell cell[][] = new Cell[numberOfColumnsInPanel][numberOfRowsInPanel];
 
     /**
      * Move snake
      */
-    public void moveSnake(int directionNumber) {
-        int snakeHeadNumberOfColumn = snakeBoxes.get(0).getNumberOfColumn();
-        int snakeHeadNumberOfRow = snakeBoxes.get(0).getNumberOfRow();
-        if (directionNumber == 37) {           //left
-            int snakeHeadAfterMoveNumberOfColumn = snakeHeadNumberOfColumn -1;
-            int snakeHeadAfterMoveNumberOfRow = snakeHeadNumberOfRow;
-            moveSnakeHead(snakeHeadAfterMoveNumberOfColumn,snakeHeadAfterMoveNumberOfRow);
-        } else if (directionNumber == 38) {    //up
+//    public void moveSnake(int directionNumber) {
+//        int snakeHeadNumberOfColumn = snakeCells.get(0).getNumberOfColumn();
+//        int snakeHeadNumberOfRow = snakeCells.get(0).getNumberOfRow();
+//        if (directionNumber == 37) {           //left
+//            int snakeHeadAfterMoveNumberOfColumn = snakeHeadNumberOfColumn - 1;
+//            int snakeHeadAfterMoveNumberOfRow = snakeHeadNumberOfRow;
+////            moveSnakeHead(snakeHeadAfterMoveNumberOfColumn, snakeHeadAfterMoveNumberOfRow);
+//        } else if (directionNumber == 38) {    //up
+//
+//        } else if (directionNumber == 39) {    //right
+//
+//        } else if (directionNumber == 40) {    //down
+//
+//        }
+//    }
 
-        } else if (directionNumber == 39) {    //right
-
-        } else if (directionNumber == 40) {    //down
-
-        }
-    }
     /**
-     * Move snake head (first snake box)
+     * Move snake head (first snake cell)
      */
-    private void moveSnakeHead(int snakeHeadAfterMoveNumberOfColumn,int snakeHeadAfterMoveNumberOfRow){
-        System.out.println(boxes.size());
-        System.out.println(snakeBoxes.size());
-        int snakeHeadBeforeMoveNumberOfColumn = snakeBoxes.get(0).getNumberOfColumn();
-        int snakeHeadBeforeMoveNumberOfRow = snakeBoxes.get(0).getNumberOfRow();
-        boxes.remove(box[snakeHeadAfterMoveNumberOfColumn][snakeHeadAfterMoveNumberOfRow]);
-        snakeBoxes.add(box[snakeHeadAfterMoveNumberOfColumn][snakeHeadAfterMoveNumberOfRow] = new FirstSnakeBox(snakeHeadAfterMoveNumberOfColumn, snakeHeadAfterMoveNumberOfRow, true, true));
-        box[snakeHeadAfterMoveNumberOfColumn][snakeHeadAfterMoveNumberOfRow].setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        box[snakeHeadAfterMoveNumberOfColumn][snakeHeadAfterMoveNumberOfRow].setBackground(Color.GREEN);
-        box[snakeHeadAfterMoveNumberOfColumn][snakeHeadAfterMoveNumberOfRow].setPreferredSize(boxDimension);
-        boxes.add(box[snakeHeadAfterMoveNumberOfColumn][snakeHeadAfterMoveNumberOfRow]);
-        snakeBoxes.remove(0);
-        for (int i=1;i<snakeBoxes.size();i++){
-            boxes.remove(box[snakeHeadBeforeMoveNumberOfColumn][snakeHeadBeforeMoveNumberOfRow]);
-            snakeBoxes.add(box[snakeHeadBeforeMoveNumberOfColumn][snakeHeadBeforeMoveNumberOfRow] = new NextSnakeBoxes(snakeHeadBeforeMoveNumberOfColumn, snakeHeadBeforeMoveNumberOfRow, true, true));
-            box[snakeHeadBeforeMoveNumberOfColumn][snakeHeadBeforeMoveNumberOfRow].setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            box[snakeHeadBeforeMoveNumberOfColumn][snakeHeadBeforeMoveNumberOfRow].setBackground(Color.GREEN);
-            box[snakeHeadBeforeMoveNumberOfColumn][snakeHeadBeforeMoveNumberOfRow].setPreferredSize(boxDimension);
-            boxes.add(box[snakeHeadBeforeMoveNumberOfColumn][snakeHeadBeforeMoveNumberOfRow]);
-            System.out.println("aaa");
+//    private void moveSnakeHead(int snakeHeadAfterMoveNumberOfColumn, int snakeHeadAfterMoveNumberOfRow) {
+//        System.out.println(cells.size());
+//        System.out.println(snakeCells.size());
+//        int snakeHeadBeforeMoveNumberOfColumn = snakeCells.get(0).getNumberOfColumn();
+//        int snakeHeadBeforeMoveNumberOfRow = snakeCells.get(0).getNumberOfRow();
+//        cells.remove(cell[snakeHeadAfterMoveNumberOfColumn][snakeHeadAfterMoveNumberOfRow]);
+//        snakeCells.add(cell[snakeHeadAfterMoveNumberOfColumn][snakeHeadAfterMoveNumberOfRow] = new FirstSnakeCell(snakeHeadAfterMoveNumberOfColumn, snakeHeadAfterMoveNumberOfRow, boxDimension));
+//        cells.add(cell[snakeHeadAfterMoveNumberOfColumn][snakeHeadAfterMoveNumberOfRow]);
+//        snakeCells.remove(0);
+//        for (int i = 1; i < snakeCells.size(); i++) {
+//            cells.remove(cell[snakeHeadBeforeMoveNumberOfColumn][snakeHeadBeforeMoveNumberOfRow]);
+//            snakeCells.add(cell[snakeHeadBeforeMoveNumberOfColumn][snakeHeadBeforeMoveNumberOfRow] = new NextSnakeCells(snakeHeadBeforeMoveNumberOfColumn, snakeHeadBeforeMoveNumberOfRow, boxDimension));
+//            cells.add(cell[snakeHeadBeforeMoveNumberOfColumn][snakeHeadBeforeMoveNumberOfRow]);
+//            System.out.println("aaa");
+//
+//            snakeHeadBeforeMoveNumberOfColumn = snakeCells.get(0).getNumberOfColumn();
+//            snakeHeadBeforeMoveNumberOfRow = snakeCells.get(0).getNumberOfRow();
+//            snakeCells.remove(0);
+//            System.out.println("bbb");
+//
+//        }
+//        cells.remove(cell[snakeHeadBeforeMoveNumberOfColumn][snakeHeadBeforeMoveNumberOfRow]);
+//        cell[snakeHeadBeforeMoveNumberOfColumn][snakeHeadBeforeMoveNumberOfRow] = new GrayCell(snakeHeadBeforeMoveNumberOfColumn, snakeHeadBeforeMoveNumberOfRow,boxDimension);
+//        cells.add(cell[snakeHeadBeforeMoveNumberOfColumn][snakeHeadBeforeMoveNumberOfRow]);
+//        System.out.println(snakeCells.get(0));
+//        System.out.println(cells.size());
+//        System.out.println(snakeCells.size());
+//    }
 
-            snakeHeadBeforeMoveNumberOfColumn = snakeBoxes.get(0).getNumberOfColumn();
-            snakeHeadBeforeMoveNumberOfRow = snakeBoxes.get(0).getNumberOfRow();
-            snakeBoxes.remove(0);
-            System.out.println("bbb");
-
-        }
-        boxes.remove(box[snakeHeadBeforeMoveNumberOfColumn][snakeHeadBeforeMoveNumberOfRow]);
-        box[snakeHeadBeforeMoveNumberOfColumn][snakeHeadBeforeMoveNumberOfRow] = new GrayBox(snakeHeadBeforeMoveNumberOfColumn,snakeHeadBeforeMoveNumberOfRow,false,false);
-        box[snakeHeadBeforeMoveNumberOfColumn][snakeHeadBeforeMoveNumberOfRow].setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        box[snakeHeadBeforeMoveNumberOfColumn][snakeHeadBeforeMoveNumberOfRow].setBackground(Color.LIGHT_GRAY);
-        box[snakeHeadBeforeMoveNumberOfColumn][snakeHeadBeforeMoveNumberOfRow].setPreferredSize(boxDimension);
-        boxes.add(box[snakeHeadBeforeMoveNumberOfColumn][snakeHeadBeforeMoveNumberOfRow]);
-        System.out.println(snakeBoxes.get(0));
-        System.out.println(boxes.size());
-        System.out.println(snakeBoxes.size());
-    }
     /**
-     * Create all boxes
+     * Create all cells
      */
-    public void createBoxInEngine() {
+    public void generateInitialSetUpOfCells() {
         for (int columnNumber = 0; columnNumber < numberOfColumnsInPanel; columnNumber++) {
             for (int rowNumber = 0; rowNumber < numberOfRowsInPanel; rowNumber++) {
-                box[columnNumber][rowNumber] = new GrayBox(columnNumber, rowNumber, false, false);
-                box[columnNumber][rowNumber].setBorder(BorderFactory.createLineBorder(Color.BLACK));
-                box[columnNumber][rowNumber].setBackground(Color.LIGHT_GRAY);
-                box[columnNumber][rowNumber].setPreferredSize(boxDimension);
-                boxes.add(box[columnNumber][rowNumber]);
+                cell[columnNumber][rowNumber] = new GrayCell(columnNumber, rowNumber,boxDimension);
+                cells.add(cell[columnNumber][rowNumber]);
             }
         }
         setColorInThreeStartBoxes();
@@ -102,60 +91,51 @@ public class Engine {
             int randomNumberOfColumn = random.nextInt(numberOfColumnsInPanel);
             int randomNumberOfRow = random.nextInt(numberOfRowsInPanel);
             /**
-             * If on boxes list is this graybox then change it to green
+             * If on cells list is this graybox then change it to green
              */
-            if (!box[randomNumberOfColumn][randomNumberOfRow].isGreen()) {
-                boxes.remove(box[randomNumberOfColumn][randomNumberOfRow]);
-                box[randomNumberOfColumn][randomNumberOfRow] = new GreenBox(randomNumberOfColumn, randomNumberOfRow, true, false);
-                box[randomNumberOfColumn][randomNumberOfRow].setBackground(Color.GREEN);
-                box[randomNumberOfColumn][randomNumberOfRow].setBorder(BorderFactory.createLineBorder(Color.BLACK));
-                box[randomNumberOfColumn][randomNumberOfRow].setPreferredSize(boxDimension);
-                boxes.add(box[randomNumberOfColumn][randomNumberOfRow]);
+            if (!cell[randomNumberOfColumn][randomNumberOfRow].isCatchCell()) {
+                cells.remove(cell[randomNumberOfColumn][randomNumberOfRow]);
+                cell[randomNumberOfColumn][randomNumberOfRow] = new GreenCell(randomNumberOfColumn, randomNumberOfRow, boxDimension);
+                cells.add(cell[randomNumberOfColumn][randomNumberOfRow]);
                 boxIsGray = true;
             }
         }
     }
 
     /**
-     * Set color in 3 boxes (start snake)
+     * Set color in 3 cells (start snake)
      */
     private void setColorInThreeStartBoxes() {
         /**
-         * Create first snake box(moveable)
+         * Create first snake cell(moveable)
          */
         int firstBoxNumberOfColumn = 45;
         int firstBoxNumberOfRow = 26;
-        boxes.remove(box[firstBoxNumberOfColumn][firstBoxNumberOfRow]);
-        box[firstBoxNumberOfColumn][firstBoxNumberOfRow] = new FirstSnakeBox(firstBoxNumberOfColumn, firstBoxNumberOfRow, true, true);
-        box[firstBoxNumberOfColumn][firstBoxNumberOfRow].setBackground(Color.GREEN);
-        box[firstBoxNumberOfColumn][firstBoxNumberOfRow].setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        box[firstBoxNumberOfColumn][firstBoxNumberOfRow].setPreferredSize(boxDimension);
-        snakeBoxes.add(box[firstBoxNumberOfColumn][firstBoxNumberOfRow]);
-        boxes.add(box[firstBoxNumberOfColumn][firstBoxNumberOfRow]);
+        cells.remove(cell[firstBoxNumberOfColumn][firstBoxNumberOfRow]);
+        cell[firstBoxNumberOfColumn][firstBoxNumberOfRow] = new FirstSnakeCell(firstBoxNumberOfColumn, firstBoxNumberOfRow, boxDimension);
+        snakeCells.add(cell[firstBoxNumberOfColumn][firstBoxNumberOfRow]);
+        cells.add(cell[firstBoxNumberOfColumn][firstBoxNumberOfRow]);
         /**
-         * Create two second snake boxes(follow first)
+         * Create two second snake cells(follow first)
          */
         createNextSnakeBox(firstBoxNumberOfColumn, firstBoxNumberOfRow - 1);
         createNextSnakeBox(firstBoxNumberOfColumn, firstBoxNumberOfRow - 2);
     }
 
     /**
-     * Create next snake box
+     * Create next snake cell
      */
     private void createNextSnakeBox(int numberOfColumn, int numberOfRow) {
-        boxes.remove(box[numberOfColumn][numberOfRow]);
-        box[numberOfColumn][numberOfRow] = new NextSnakeBoxes(numberOfColumn, numberOfRow, true, true);
-        box[numberOfColumn][numberOfRow].setBackground(Color.GREEN);
-        box[numberOfColumn][numberOfRow].setPreferredSize(boxDimension);
-        box[numberOfColumn][numberOfRow].setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        snakeBoxes.add(box[numberOfColumn][numberOfRow]);
-        boxes.add(box[numberOfColumn][numberOfRow]);
+        cells.remove(cell[numberOfColumn][numberOfRow]);
+        cell[numberOfColumn][numberOfRow] = new NextSnakeCells(numberOfColumn, numberOfRow, boxDimension);
+        snakeCells.add(cell[numberOfColumn][numberOfRow]);
+        cells.add(cell[numberOfColumn][numberOfRow]);
     }
 
     /**
-     * Send list with boxes
+     * Send list with cells
      */
-    public ArrayList<Box> getBoxesList() {
-        return boxes;
+    public ArrayList<Cell> getBoxesList() {
+        return cells;
     }
 }

@@ -15,7 +15,7 @@ public class Controller {
         this.engine = engine;
         this.view = view;
 
-        engine.createBoxInEngine();
+        engine.generateInitialSetUpOfCells();
         view.setUpCells(engine.getBoxesList(), new KeyboardListener());
 //        for (int i=0;i<=10;i++){
 //            final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
@@ -27,10 +27,10 @@ public class Controller {
 //            }, 0, 2, TimeUnit.SECONDS);
 //
 //    }
-        startGame(37);
+//
     }
     private void startGame(int direction){
-        engine.moveSnake(direction);
+//        engine.moveSnake(direction);
 
     }
     public class KeyboardListener implements KeyListener{
