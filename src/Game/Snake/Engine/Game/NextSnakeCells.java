@@ -10,6 +10,7 @@ public class NextSnakeCells extends Cell implements NextMove {
     public NextSnakeCells(int numberOfColumn, int numberOfRow, Dimension cellDimension) {
         super(numberOfColumn, numberOfRow, cellDimension);
         setBackground(Color.GREEN);
+        setIsPartOfSnake(true);
     }
 
     @Override

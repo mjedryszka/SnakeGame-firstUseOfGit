@@ -25,7 +25,7 @@ public abstract class Cell extends JPanel {
         return isCatchCell;
     }
 
-    public void setIsGreen(boolean isGreen) {
+    public void setIsCatchCell(boolean isGreen) {
         this.isCatchCell = isGreen;
     }
 

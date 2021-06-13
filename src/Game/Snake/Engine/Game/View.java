@@ -2,6 +2,7 @@ package Game.Snake.Engine.Game;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
@@ -34,6 +35,9 @@ public class View {
         gamePanel.requestFocusInWindow();
         viewFrame.setVisible(true);
     }
+    public void addAct(ActionListener buttonListener){
+        startGameButton.addActionListener(buttonListener);
+    }
     /**
      *Create cells and add kye listener to game panel
      */
@@ -47,9 +51,12 @@ public class View {
             gamePanelConstraints.gridy=rowNumber;
             gamePanel.add(cell,gamePanelConstraints);
         }
-        gamePanel.remove(1);
+
         gamePanel.addKeyListener(keyListener);
         gamePanel.setFocusable(true);
+
+
+
 
         viewFrame.pack();
         gamePanel.requestFocusInWindow();
@@ -61,21 +68,37 @@ public class View {
         /**
          * Delete gray cells
          */
-        boxesNumberList.stream()
-                .forEach(gamePanel::remove);
+
+
+
+        for (int a : boxesNumberList){
+                System.out.println(a);
+            gamePanel.getComponent(a).setBackground(Color.GREEN);
+
+        }
         /**
          * Create new green cells
          */
-        for (Cell cell : boxesList){
-            GridBagConstraints gamePanelConstraints = new GridBagConstraints();
-            int columnNumber = cell.getNumberOfColumn();
-            int rowNumber = cell.getNumberOfRow();
-            gamePanelConstraints.gridx=columnNumber;
-            gamePanelConstraints.gridy=rowNumber;
-            gamePanel.add(cell,gamePanelConstraints);
-        }
+//        for (Cell cell : boxesList){
+//
+//            GridBagConstraints gamePanelConstraints = new GridBagConstraints();
+//            int columnNumber = cell.getNumberOfColumn();
+//            int rowNumber = cell.getNumberOfRow();
+//            System.out.println(columnNumber);
+//            System.out.println(rowNumber);
+//            gamePanelConstraints.gridx=columnNumber;
+//            gamePanelConstraints.gridy=rowNumber;
+//            gamePanel.add(cell,gamePanelConstraints);
+//
+//        }
+
         gamePanel.setFocusable(true);
-        viewFrame.pack();
+        gamePanel.repaint();
+        gamePanel.revalidate();
+
+//        viewFrame.repaint();
+//        viewFrame.revalidate();
+//        viewFrame.pack();
         gamePanel.requestFocusInWindow();
     }
 }
