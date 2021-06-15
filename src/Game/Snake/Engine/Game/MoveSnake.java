@@ -6,14 +6,11 @@ import java.util.ArrayList;
 /**
  * Created by Home on 2021-06-14.
  */
-public class Move {
-    private ArrayList<Cell> cellList = new ArrayList<>();
+public class MoveSnake {
     private ArrayList<Cell> snakeCells = new ArrayList<>();
     private Cell cell[][];
-//    private Cell cell[][] = new Cell[100][100];
 
-    public Move (ArrayList<Cell> cellList,ArrayList<Cell> snakeCells,Cell cell[][]){
-        this.cellList = cellList;
+    public MoveSnake(ArrayList<Cell> snakeCells, Cell cell[][]){
         this.snakeCells = snakeCells;
         this.cell = cell;
     }
@@ -22,6 +19,9 @@ public class Move {
     public void moveSnake(int addToNumberOfColumn, int addToNumberOfRow){
         int currentFirstSnakeCellNumberOfColumn = snakeCells.get(0).getNumberOfColumn();
         int currentFirstSnakeCellNumberOfRow = snakeCells.get(0).getNumberOfRow();
+
+        int afterMoveFirstSnakeNumberOfColumn = currentFirstSnakeCellNumberOfColumn + addToNumberOfColumn;
+        int afterMoveFirstSnakeNumberOfRow = currentFirstSnakeCellNumberOfRow + addToNumberOfRow;
 
         moveFirstSnakeCell(addToNumberOfColumn,addToNumberOfRow);
         moveNextSnakeCells(currentFirstSnakeCellNumberOfColumn,currentFirstSnakeCellNumberOfRow);

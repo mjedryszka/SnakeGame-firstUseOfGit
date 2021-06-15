@@ -22,7 +22,7 @@ public class Controller {
         this.view = view;
 
         engine.generateInitialSetUpOfCells();
-        view.setUpCells(engine.getAllCellsList(), new KeyboardListener());
+        view.setUpCells(engine.getCellsList(), new KeyboardListener());
         view.addAct(new ButtonListener());
     }
     private void startGame(int direction){

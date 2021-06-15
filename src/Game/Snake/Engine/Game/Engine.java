@@ -8,30 +8,38 @@ import java.util.ArrayList;
 public class Engine {
     private int numberOfColumnsInPanel = 90;
     private int numberOfRowsInPanel = 50;
+    private ArrayList<Cell> snakeCellList = new ArrayList<>();
 
     private GenerateCells generateCells = new GenerateCells(numberOfColumnsInPanel,numberOfRowsInPanel);
-    private Move move;
+    private MoveSnake moveSnake;
 
     public void moveSnake(int direction){
         if (direction == 37){ //left
             int addToNumberOfColumn = -1;
             int addToNumberOfRow = 0;
-            move = new Move(getAllCellsList(),getSnakeCellList(),getCellList());
-            move.moveSnake(addToNumberOfColumn,addToNumberOfRow);
+            moveSnake = new MoveSnake(getSnakeCellList(), getCellsList());
+            moveSnake.moveSnake(addToNumberOfColumn,addToNumberOfRow);
 //            generateCells.moveSnake(addToNumberOfColumn,addToNumberOfRow);
         } else if (direction == 38){ //up
             int addToNumberOfColumn = 0;
             int addToNumberOfRow = -1;
+            moveSnake = new MoveSnake(getSnakeCellList(), getCellsList());
+            moveSnake.moveSnake(addToNumberOfColumn,addToNumberOfRow);
 //            generateCells.moveSnake(addToNumberOfColumn,addToNumberOfRow);
         } else if (direction == 39){ //right
             int addToNumberOfColumn = 1;
             int addToNumberOfRow = 0;
+            moveSnake = new MoveSnake(getSnakeCellList(), getCellsList());
+            moveSnake.moveSnake(addToNumberOfColumn,addToNumberOfRow);
 //            generateCells.moveSnake(addToNumberOfColumn,addToNumberOfRow);
         } else if (direction == 40){ //down
             int addToNumberOfColumn = 0;
             int addToNumberOfRow = 1;
+            moveSnake = new MoveSnake(getSnakeCellList(), getCellsList());
+            moveSnake.moveSnake(addToNumberOfColumn,addToNumberOfRow);
 //            generateCells.moveSnake(addToNumberOfColumn,addToNumberOfRow);
         }
+
     }
     /**
      * Create initial cells
@@ -40,19 +48,22 @@ public class Engine {
         generateCells.generateAllGrayCells();
         generateCells.generateThreeInitialSnakeCells();
         generateCells.generateCellToCatch();
+        setSnakeCellList(generateCells.getSnakeCells());
     }
-
+    /**
+     *Get and sett snake cells list
+     */
+    public ArrayList<Cell> getSnakeCellList() {
+        return snakeCellList;
+    }
+    private void setSnakeCellList(ArrayList<Cell> snakeCellList) {
+        this.snakeCellList = snakeCellList;
+    }
     /**
      * Send list with cells
      */
-    public ArrayList<Cell> getAllCellsList() {
+    public  Cell[][] getCellsList(){
         return generateCells.getCells();
-    }
-    public ArrayList<Cell> getSnakeCellList(){
-        return generateCells.getSnakeCells();
-    }
-    public  Cell[][] getCellList(){
-        return generateCells.getCell();
     }
 
 }

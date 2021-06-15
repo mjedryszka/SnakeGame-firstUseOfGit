@@ -41,17 +41,24 @@ public class View {
     /**
      *Create cells and add kye listener to game panel
      */
-    public void setUpCells(ArrayList<Cell> boxesList, KeyListener keyListener){
+    public void setUpCells(Cell[][] cells, KeyListener keyListener){
         gamePanel.removeAll();
-        for (Cell cell : boxesList){
-            GridBagConstraints gamePanelConstraints = new GridBagConstraints();
-            int columnNumber = cell.getNumberOfColumn();
-            int rowNumber = cell.getNumberOfRow();
-            gamePanelConstraints.gridx=columnNumber;
-            gamePanelConstraints.gridy=rowNumber;
-            gamePanel.add(cell,gamePanelConstraints);
+//        for (Cell cell : boxesList){
+//            GridBagConstraints gamePanelConstraints = new GridBagConstraints();
+//            int columnNumber = cell.getNumberOfColumn();
+//            int rowNumber = cell.getNumberOfRow();
+//            gamePanelConstraints.gridx=columnNumber;
+//            gamePanelConstraints.gridy=rowNumber;
+//            gamePanel.add(cell,gamePanelConstraints);
+//        }
+        for (int i = 0;i<90;i++){
+            for (int j = 0;j<50;j++){
+                GridBagConstraints gamePanelConstraints = new GridBagConstraints();
+                gamePanelConstraints.gridx=i;
+                gamePanelConstraints.gridy=j;
+                gamePanel.add(cells[i][j],gamePanelConstraints);
+            }
         }
-
         gamePanel.addKeyListener(keyListener);
         gamePanel.setFocusable(true);
 
@@ -62,7 +69,7 @@ public class View {
         gamePanel.requestFocusInWindow();
     }
     /**
-     *Move snake
+     *MoveSnake snake
      */
     public void chagneSnakePosition(ArrayList<Cell> boxesList){
         /**
