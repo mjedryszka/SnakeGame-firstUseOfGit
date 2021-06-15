@@ -10,24 +10,27 @@ public class Engine {
     private int numberOfRowsInPanel = 50;
 
     private GenerateCells generateCells = new GenerateCells(numberOfColumnsInPanel,numberOfRowsInPanel);
+    private Move move;
 
     public void moveSnake(int direction){
         if (direction == 37){ //left
             int addToNumberOfColumn = -1;
             int addToNumberOfRow = 0;
-            generateCells.moveSnake(addToNumberOfColumn,addToNumberOfRow);
+            move = new Move(getAllCellsList(),getSnakeCellList(),getCellList());
+            move.moveSnake(addToNumberOfColumn,addToNumberOfRow);
+//            generateCells.moveSnake(addToNumberOfColumn,addToNumberOfRow);
         } else if (direction == 38){ //up
             int addToNumberOfColumn = 0;
             int addToNumberOfRow = -1;
-            generateCells.moveSnake(addToNumberOfColumn,addToNumberOfRow);
+//            generateCells.moveSnake(addToNumberOfColumn,addToNumberOfRow);
         } else if (direction == 39){ //right
             int addToNumberOfColumn = 1;
             int addToNumberOfRow = 0;
-            generateCells.moveSnake(addToNumberOfColumn,addToNumberOfRow);
+//            generateCells.moveSnake(addToNumberOfColumn,addToNumberOfRow);
         } else if (direction == 40){ //down
             int addToNumberOfColumn = 0;
             int addToNumberOfRow = 1;
-            generateCells.moveSnake(addToNumberOfColumn,addToNumberOfRow);
+//            generateCells.moveSnake(addToNumberOfColumn,addToNumberOfRow);
         }
     }
     /**
@@ -48,7 +51,8 @@ public class Engine {
     public ArrayList<Cell> getSnakeCellList(){
         return generateCells.getSnakeCells();
     }
-    public ArrayList<Integer> getCellsNumberToDelete(){
-        return generateCells.getCellsNumberToDelete();
+    public  Cell[][] getCellList(){
+        return generateCells.getCell();
     }
+
 }

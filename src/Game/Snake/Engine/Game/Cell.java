@@ -6,7 +6,7 @@ import java.awt.*;
 /**
  * Created by Home on 2021-05-30.
  */
-public abstract class Cell extends JPanel {
+public class Cell extends JPanel {
     private int numberOfColumn;
     private int numberOfRow;
     private boolean isCatchCell;
@@ -17,6 +17,7 @@ public abstract class Cell extends JPanel {
         this.numberOfRow = numberOfRow;
         this.isCatchCell = false;
         this.isPartOfSnake = false;
+        setBackground(Color.LIGHT_GRAY);
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
         setPreferredSize(cellDimension);
     }

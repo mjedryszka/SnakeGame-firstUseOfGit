@@ -27,21 +27,21 @@ public class Controller {
     }
     private void startGame(int direction){
         engine.moveSnake(direction);
-        view.chagneSnakePosition(engine.getSnakeCellList(), engine.getCellsNumberToDelete());
+        view.chagneSnakePosition(engine.getSnakeCellList());
 
     }
     public class ButtonListener implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            moveDirection = 40;
+            moveDirection = 37;
             final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
             executorService.scheduleAtFixedRate(new Runnable() {
                 @Override
                 public void run() {
                     startGame(moveDirection);
                 }
-            }, 1, 1, TimeUnit.SECONDS);
+            }, 200, 200, TimeUnit.MILLISECONDS);
         }
     }
     public class KeyboardListener implements KeyListener{

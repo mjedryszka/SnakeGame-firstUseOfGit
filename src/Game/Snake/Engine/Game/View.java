@@ -64,33 +64,18 @@ public class View {
     /**
      *Move snake
      */
-    public void chagneSnakePosition(ArrayList<Cell> boxesList,ArrayList<Integer> boxesNumberList){
+    public void chagneSnakePosition(ArrayList<Cell> boxesList){
         /**
          * Delete gray cells
          */
 
 
 
-        for (int a : boxesNumberList){
-                System.out.println(a);
-            gamePanel.getComponent(a).setBackground(Color.GREEN);
 
-        }
         /**
          * Create new green cells
          */
-//        for (Cell cell : boxesList){
-//
-//            GridBagConstraints gamePanelConstraints = new GridBagConstraints();
-//            int columnNumber = cell.getNumberOfColumn();
-//            int rowNumber = cell.getNumberOfRow();
-//            System.out.println(columnNumber);
-//            System.out.println(rowNumber);
-//            gamePanelConstraints.gridx=columnNumber;
-//            gamePanelConstraints.gridy=rowNumber;
-//            gamePanel.add(cell,gamePanelConstraints);
-//
-//        }
+
 
         gamePanel.setFocusable(true);
         gamePanel.repaint();
