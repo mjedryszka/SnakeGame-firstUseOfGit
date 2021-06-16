@@ -43,14 +43,6 @@ public class View {
      */
     public void setUpCells(Cell[][] cells, KeyListener keyListener){
         gamePanel.removeAll();
-//        for (Cell cell : boxesList){
-//            GridBagConstraints gamePanelConstraints = new GridBagConstraints();
-//            int columnNumber = cell.getNumberOfColumn();
-//            int rowNumber = cell.getNumberOfRow();
-//            gamePanelConstraints.gridx=columnNumber;
-//            gamePanelConstraints.gridy=rowNumber;
-//            gamePanel.add(cell,gamePanelConstraints);
-//        }
         for (int i = 0;i<90;i++){
             for (int j = 0;j<50;j++){
                 GridBagConstraints gamePanelConstraints = new GridBagConstraints();
@@ -61,9 +53,6 @@ public class View {
         }
         gamePanel.addKeyListener(keyListener);
         gamePanel.setFocusable(true);
-
-
-
 
         viewFrame.pack();
         gamePanel.requestFocusInWindow();

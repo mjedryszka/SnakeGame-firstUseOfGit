@@ -12,74 +12,86 @@ public class GenerateCells {
     private int numberOfRowsInPanel = 50;
     private ArrayList<Cell> snakeCells = new ArrayList<>();
     private Dimension cellDimension = new Dimension(15, 15);
-    private Cell cells[][] = new Cell[numberOfColumnsInPanel][numberOfRowsInPanel];
+    private Cell cell[][] = new Cell[numberOfColumnsInPanel][numberOfRowsInPanel];
 
     public GenerateCells(int numberOfColumnsInPanel, int numberOfRowsInPanel) {
         this.numberOfColumnsInPanel = numberOfColumnsInPanel;
         this.numberOfRowsInPanel = numberOfRowsInPanel;
     }
 
-
+    /**
+     * Generate cell to catch
+     */
     public void generateCellToCatch() {
         Random random = new Random();
         boolean cellIsGray = false;
         while (!cellIsGray) {
             int randomNumberOfColumn = random.nextInt(numberOfColumnsInPanel);
             int randomNumberOfRow = random.nextInt(numberOfRowsInPanel);
+            Cell cellToCatch = cell[randomNumberOfColumn][randomNumberOfRow];
             /**
-             * If on cells list is this graybox then change it to green
+             * If on cell list is this graybox then change it to green
              */
-            if (!cells[randomNumberOfColumn][randomNumberOfRow].isCatchCell() && !cells[randomNumberOfColumn][randomNumberOfRow].isPartOfSnake()) {
-                cells[randomNumberOfColumn][randomNumberOfRow].setBackground(Color.GREEN);
-                cells[randomNumberOfColumn][randomNumberOfRow].setIsCatchCell(true);
+            if (!cellToCatch.isCatchCell() && !cellToCatch.isPartOfSnake()) {
+                cellToCatch.setBackground(Color.GREEN);
+                cellToCatch.setIsCatchCell(true);
                 cellIsGray = true;
             }
         }
     }
+
     /**
-     * Generate cells for game panel
+     * Generate cell for game panel
      */
-    public void generateAllGrayCells(){
+    public void generateAllGrayCells() {
         for (int columnNumber = 0; columnNumber < numberOfColumnsInPanel; columnNumber++) {
             for (int rowNumber = 0; rowNumber < numberOfRowsInPanel; rowNumber++) {
-                cells[columnNumber][rowNumber] = new Cell(columnNumber, rowNumber, cellDimension);
+                cell[columnNumber][rowNumber] = new Cell(columnNumber, rowNumber, cellDimension);
             }
         }
     }
+
     /**
      * Generate snake
      */
     public void generateThreeInitialSnakeCells() {
         /**
-         * Create first snake cells(moveable)
+         * Create first snake cell
          */
         int firstCellNumberOfColumn = 45;
         int firstCellNumberOfRow = 26;
-        cells[firstCellNumberOfColumn][firstCellNumberOfRow].setBackground(Color.GREEN);
-        cells[firstCellNumberOfColumn][firstCellNumberOfRow].setIsPartOfSnake(true);
-        snakeCells.add(cells[firstCellNumberOfColumn][firstCellNumberOfRow]);
+        Cell firstSnakeCell = cell[firstCellNumberOfColumn][firstCellNumberOfRow];
+
+        firstSnakeCell.setBackground(Color.GREEN);
+        firstSnakeCell.setIsPartOfSnake(true);
+        snakeCells.add(firstSnakeCell);
         /**
-         * Create two next snake cells
+         * Create two next snake cell
          */
-        generateTwoNextSnakeCells(firstCellNumberOfColumn, firstCellNumberOfRow - 1);
-        generateTwoNextSnakeCells(firstCellNumberOfColumn, firstCellNumberOfRow - 2);
+        Cell secondSnakeCell = cell[firstCellNumberOfColumn][firstCellNumberOfRow - 1];
+        Cell thirdSnakeCell = cell[firstCellNumberOfColumn][firstCellNumberOfRow - 2];
+        generateNextSnakeCells(secondSnakeCell);
+        generateNextSnakeCells(thirdSnakeCell);
     }
+
     /**
-     * Create next snake cells
+     * Create next snake cell
      */
-    private void generateTwoNextSnakeCells(int numberOfColumn, int numberOfRow) {
-        cells[numberOfColumn][numberOfRow].setBackground(Color.GREEN);
-        cells[numberOfColumn][numberOfRow].setIsPartOfSnake(true);
-        snakeCells.add(cells[numberOfColumn][numberOfRow]);
+    private void generateNextSnakeCells(Cell cell) {
+        cell.setBackground(Color.GREEN);
+        cell.setIsPartOfSnake(true);
+        snakeCells.add(cell);
     }
+
     /**
-     *Get all cells
+     * Get all cell
      */
-    public Cell[][] getCells() {
-        return cells;
+    public Cell[][] getCell() {
+        return cell;
     }
+
     /**
-     *Get all snakeCells
+     * Get all snakeCells
      */
     public ArrayList<Cell> getSnakeCells() {
         return snakeCells;

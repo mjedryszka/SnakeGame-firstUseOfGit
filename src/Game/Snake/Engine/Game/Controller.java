@@ -26,7 +26,7 @@ public class Controller {
         view.addAct(new ButtonListener());
     }
     private void startGame(int direction){
-        engine.moveSnake(direction);
+        engine.moveSnakeEngine(direction);
         view.chagneSnakePosition(engine.getSnakeCellList());
 
     }
