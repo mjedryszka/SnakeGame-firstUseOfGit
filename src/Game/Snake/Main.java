@@ -1,5 +1,7 @@
 package Game.Snake;
 
+import Game.Snake.Account.Manage.MainMenu;
+
 import java.awt.*;
 
 /**

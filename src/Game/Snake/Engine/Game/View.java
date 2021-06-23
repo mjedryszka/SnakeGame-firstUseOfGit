@@ -30,13 +30,19 @@ public class View {
         viewFrame.setContentPane(mainPanel);
         viewFrame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         gamePanel.setLayout(new GridBagLayout());
-
         viewFrame.pack();
         gamePanel.requestFocusInWindow();
         viewFrame.setVisible(true);
     }
-    public void addAct(ActionListener buttonListener){
+    public void addActionListenerToButtons(ActionListener buttonListener){
         startGameButton.addActionListener(buttonListener);
+    }
+
+    /**
+     * Add focus on game panel, game panel is key listener
+     */
+    public void focusOnGamePanel(){
+        gamePanel.requestFocus();
     }
     /**
      *Create cells and add kye listener to game panel
@@ -55,31 +61,6 @@ public class View {
         gamePanel.setFocusable(true);
 
         viewFrame.pack();
-        gamePanel.requestFocusInWindow();
-    }
-    /**
-     *MoveSnake snake
-     */
-    public void chagneSnakePosition(ArrayList<Cell> boxesList){
-        /**
-         * Delete gray cells
-         */
-
-
-
-
-        /**
-         * Create new green cells
-         */
-
-
-        gamePanel.setFocusable(true);
-        gamePanel.repaint();
-        gamePanel.revalidate();
-
-//        viewFrame.repaint();
-//        viewFrame.revalidate();
-//        viewFrame.pack();
         gamePanel.requestFocusInWindow();
     }
 }

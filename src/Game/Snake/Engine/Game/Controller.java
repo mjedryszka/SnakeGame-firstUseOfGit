@@ -23,25 +23,33 @@ public class Controller {
 
         engine.generateInitialSetUpOfCells();
         view.setUpCells(engine.getCellsList(), new KeyboardListener());
-        view.addAct(new ButtonListener());
+        view.addActionListenerToButtons(new ButtonListener());
     }
     private void startGame(int direction){
         engine.moveSnakeEngine(direction);
-        view.chagneSnakePosition(engine.getSnakeCellList());
-
+        view.focusOnGamePanel();
+        if (engine.isEndGame()){
+            System.out.println("END");
+            ButtonListener buttonListener = null;
+            buttonListener.closeMoveSnakeThread();
+        }
     }
     public class ButtonListener implements ActionListener{
+        ScheduledExecutorService executorService;
 
+        public void closeMoveSnakeThread(){
+            executorService.shutdown();
+        }
         @Override
         public void actionPerformed(ActionEvent e) {
             moveDirection = 37;
-            final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+            executorService = Executors.newSingleThreadScheduledExecutor();
             executorService.scheduleAtFixedRate(new Runnable() {
                 @Override
                 public void run() {
                     startGame(moveDirection);
                 }
-            }, 200, 200, TimeUnit.MILLISECONDS);
+            }, 150, 150, TimeUnit.MILLISECONDS);
         }
     }
     public class KeyboardListener implements KeyListener{
@@ -51,7 +59,6 @@ public class Controller {
 
         @Override
         public void keyPressed(KeyEvent e) {
-            System.out.println(e.getKeyCode());
             moveDirection = e.getKeyCode();
         }
 
