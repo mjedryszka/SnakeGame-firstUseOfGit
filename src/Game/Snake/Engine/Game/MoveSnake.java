@@ -38,6 +38,7 @@ public class MoveSnake {
         if (!endGame) {
             if (checkIfAfterMoveCellIsCellToCatch(afterMoveFirstSnakeCell)) {
                 addCellToCatchAsFirstCellOfSnake(afterMoveFirstSnakeCell);
+                CountPlayerPoints.addTenPoints();
             } else {
                 moveFirstSnakeCell(afterMoveFirstSnakeCell);
                 moveNextSnakeCells(currentFirstSnakeCell);
@@ -101,7 +102,6 @@ public class MoveSnake {
     /**
      * Getters and setters
      */
-
     public boolean isEndGame() {
         return endGame;
     }

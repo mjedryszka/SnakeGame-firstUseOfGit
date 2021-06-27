@@ -1,9 +1,6 @@
 package Game.Snake.Account.Manage;
 
-import Game.Snake.Account.Manage.Account.Manage.CreateAccountFrame;
-import Game.Snake.Account.Manage.Account.Manage.HighscoresFrame;
-import Game.Snake.Account.Manage.Account.Manage.LoginFrame;
-import Game.Snake.Account.Manage.Account.Manage.PlayerName;
+import Game.Snake.Account.Manage.Account.Manage.*;
 import Game.Snake.Engine.Game.Controller;
 import Game.Snake.Engine.Game.Engine;
 import Game.Snake.Engine.Game.View;
@@ -92,10 +89,12 @@ public class MainMenu {
                     mainMenuFrame.dispose();
                     break;
                 case "highscores":
+                    mainMenuFrame.dispose();
                     HighscoresFrame highscoresFrame = new HighscoresFrame();
                     break;
                 case "settings":
-                    System.out.println("settings");
+                    mainMenuFrame.dispose();
+                    SettingsFrame settingsFrame = new SettingsFrame();
                     break;
                 case "exit":
                     System.exit(0);

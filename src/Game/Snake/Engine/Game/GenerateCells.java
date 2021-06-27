@@ -10,8 +10,8 @@ import java.util.Random;
 public class GenerateCells {
     private int numberOfColumnsInPanel;
     private int numberOfRowsInPanel;
-    private int firstSnakeCellNumberOfColumn = 45;
-    private int firstSnakeCellNumberOfRow = 26;
+    private int firstSnakeCellNumberOfColumn;
+    private int firstSnakeCellNumberOfRow;
     private int numberOfSnakeCells = 3; //How many initial snake cells we have
     private ArrayList<Cell> snakeCells = new ArrayList<>();
     private Dimension cellDimension = new Dimension(15, 15);
@@ -21,6 +21,8 @@ public class GenerateCells {
     public GenerateCells(int numberOfColumnsInPanel, int numberOfRowsInPanel) {
         this.numberOfColumnsInPanel = numberOfColumnsInPanel;
         this.numberOfRowsInPanel = numberOfRowsInPanel;
+        this.firstSnakeCellNumberOfColumn = numberOfColumnsInPanel / 2;
+        this.firstSnakeCellNumberOfRow = numberOfRowsInPanel / 2;
     }
 
     /**
@@ -30,8 +32,8 @@ public class GenerateCells {
         Random random = new Random();
         boolean cellIsGray = false;
         while (!cellIsGray) {
-            int randomNumberOfColumn = random.nextInt(numberOfColumnsInPanel);
-            int randomNumberOfRow = random.nextInt(numberOfRowsInPanel);
+            int randomNumberOfColumn = random.nextInt(numberOfColumnsInPanel - 1);
+            int randomNumberOfRow = random.nextInt(numberOfRowsInPanel - 1);
             Cell cellToCatch = cells[randomNumberOfColumn][randomNumberOfRow];
             /**
              * If on cells list is this graybox then change it to green
@@ -55,16 +57,21 @@ public class GenerateCells {
             }
         }
     }
-    public void generateCellsAroundGamePanel(){
-        for (int i=0;i<numberOfColumnsInPanel;i++){
+
+    /**
+     * Generate invisible cells around game panel
+     */
+    public void generateCellsAroundGamePanel() {
+        for (int i = 0; i < numberOfColumnsInPanel; i++) {
             cells[i][0].setVisible(false);
-            cells[i][numberOfRowsInPanel-1].setVisible(false);
+            cells[i][numberOfRowsInPanel - 1].setVisible(false);
         }
-        for (int i=0;i<numberOfRowsInPanel;i++){
+        for (int i = 0; i < numberOfRowsInPanel; i++) {
             cells[0][i].setVisible(false);
-            cells[numberOfColumnsInPanel-1][i].setVisible(false);
+            cells[numberOfColumnsInPanel - 1][i].setVisible(false);
         }
     }
+
     /**
      * Generate snake
      */
@@ -72,6 +79,8 @@ public class GenerateCells {
         /**
          * Create first snake cells
          */
+        System.out.println(firstSnakeCellNumberOfColumn);
+        System.out.println(firstSnakeCellNumberOfRow);
         Cell firstSnakeCell = cells[firstSnakeCellNumberOfColumn][firstSnakeCellNumberOfRow];
         for (int i = 0; i < numberOfSnakeCells; i++) {
             generateSnakeCells(firstSnakeCell);

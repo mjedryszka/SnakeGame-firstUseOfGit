@@ -1,13 +1,15 @@
 package Game.Snake.Engine.Game;
 
+import Game.Snake.Account.Manage.Account.Manage.Settings;
+
 import java.util.ArrayList;
 
 /**
  * Created by Home on 2021-05-30.
  */
 public class Engine {
-    private int numberOfColumnsInPanel = 90;
-    private int numberOfRowsInPanel = 50;
+    private int numberOfColumnsInPanel;
+    private int numberOfRowsInPanel;
     private int currentDirection;
     private boolean endGame = false;
     private ArrayList<Cell> snakeCellList;
@@ -57,6 +59,25 @@ public class Engine {
         setSnakeCellList(moveSnake.getSnakeCells());
         setCellsList(moveSnake.getCells());
         setEndGame(moveSnake.isEndGame());
+    }
+
+    public void getGamePanelSizeFromSettings(){
+        String panelSize = Settings.getGameBoardSize();
+        System.out.println(panelSize);
+        switch (panelSize){
+            case "30x30":
+                numberOfColumnsInPanel = 30;
+                numberOfRowsInPanel = 30;
+                break;
+            case "50x50":
+                numberOfColumnsInPanel = 50;
+                numberOfRowsInPanel = 50;
+                break;
+            case "50x90":
+                numberOfColumnsInPanel = 90;
+                numberOfRowsInPanel = 50;
+                break;
+        }
     }
 
     private boolean isCellToCatchAvailable() {

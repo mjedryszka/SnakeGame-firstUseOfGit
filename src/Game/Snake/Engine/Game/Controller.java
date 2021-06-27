@@ -20,14 +20,20 @@ public class Controller {
     public Controller(Engine engine, View view) {
         this.engine = engine;
         this.view = view;
-
+        //Get panel size from settings
+        engine.getGamePanelSizeFromSettings();
+        //Create initial cells
         engine.generateInitialSetUpOfCells();
         view.setUpCells(engine.getCellsList(), new KeyboardListener());
+        //Add action listener
         view.addActionListenerToButtons(new ButtonListener());
+        //Start points counter
+        CountPlayerPoints countPlayerPoints = new CountPlayerPoints();
     }
     private void startGame(int direction){
         engine.moveSnakeEngine(direction);
         view.focusOnGamePanel();
+        view.showPlayerPointsOnGamePanel();
         if (engine.isEndGame()){
             System.out.println("END");
             ButtonListener buttonListener = null;

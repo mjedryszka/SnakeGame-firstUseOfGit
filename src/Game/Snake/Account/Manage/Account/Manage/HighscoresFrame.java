@@ -10,14 +10,14 @@ import java.awt.event.ActionListener;
 /**
  * Created by Home on 2021-06-23.
  */
-public class HighscoresFrame implements ActionListener{
+public class HighscoresFrame implements ActionListener {
     private JFrame highscoresFrame;
     private JTextArea nameTextArea;
     private JTextArea scoresTextArea;
     private JButton backButton;
     private JPanel highscoresPanel;
 
-    public HighscoresFrame(){
+    public HighscoresFrame() {
         highscoresFrame = new JFrame("Highscores");
         highscoresFrame.setContentPane(highscoresPanel);
         highscoresFrame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -37,7 +37,8 @@ public class HighscoresFrame implements ActionListener{
         highscoresFrame.dispose();
         MainMenu mainMenu = new MainMenu();
     }
-    private void showHighscores(){
+
+    private void showHighscores() {
         Highscores highscores = new Highscores();
         //Show name list
         highscores.getDataFromFileDataBase();
