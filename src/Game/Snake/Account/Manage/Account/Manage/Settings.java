@@ -6,14 +6,14 @@ package Game.Snake.Account.Manage.Account.Manage;
 public class Settings {
     private static String gameBoardSize;
 
-    public Settings(){
-        if (gameBoardSize == null){
-            gameBoardSize = "50x90";
+    public Settings() {
+        if (gameBoardSize == null) {
+            gameBoardSize = "30x30";
         }
     }
 
     public static String getGameBoardSize() {
-        if (gameBoardSize == null){
+        if (gameBoardSize == null) {
             Settings settings = new Settings();
         }
         return gameBoardSize;

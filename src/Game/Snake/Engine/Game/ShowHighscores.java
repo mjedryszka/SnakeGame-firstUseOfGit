@@ -17,7 +17,7 @@ public class ShowHighscores {
     private HashMap<Integer, String> namesList = new HashMap<>();
     private HashMap<Integer, Integer> pointsList = new HashMap<>();
 
-    public ShowHighscores(){
+    public ShowHighscores() {
         getDataFromFileDataBaseAndAddToMap();
         getHighestResult();
     }

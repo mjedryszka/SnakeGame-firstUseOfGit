@@ -52,10 +52,10 @@ public class MoveSnake {
     private void checkIfAfterMoveCellIsOutsideGamePanel(Cell cell) {
         int numberOfColumn = cell.getNumberOfColumn();
         int numberOfRow = cell.getNumberOfRow();
-        if (numberOfColumn <= 0 || numberOfColumn >= numberOfColumnsInGamePanel) {
+        if (numberOfColumn <= 0 || numberOfColumn >= numberOfColumnsInGamePanel - 1) {
             endGame = true;
         }
-        if (numberOfRow <= 0 || numberOfRow >= numberOfRowsInGamePanel) {
+        if (numberOfRow <= 0 || numberOfRow >= numberOfRowsInGamePanel - 1) {
             endGame = true;
         }
     }
@@ -68,6 +68,7 @@ public class MoveSnake {
 
     private void addCellToCatchAsFirstCellOfSnake(Cell cell) {
         cell.setIsCatchCell(false);
+        cell.setIsPartOfSnake(true);
         snakeCells.add(0, cell);
     }
 

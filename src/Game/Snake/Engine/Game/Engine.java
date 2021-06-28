@@ -14,8 +14,7 @@ public class Engine {
     private boolean endGame = false;
     private ArrayList<Cell> snakeCellList;
     private Cell cellsList[][];
-
-    private GenerateCells generateCells = new GenerateCells(numberOfColumnsInPanel, numberOfRowsInPanel);
+    private GenerateCells generateCells;
     private MoveSnake moveSnake;
 
 
@@ -61,12 +60,15 @@ public class Engine {
         setEndGame(moveSnake.isEndGame());
     }
 
-    public void getGamePanelSizeFromSettings(){
+    public void setNumbersOfColumnsAndRowsInGenerateCellsClass() {
+        generateCells = new GenerateCells(numberOfColumnsInPanel, numberOfRowsInPanel);
+    }
+
+    public void getGamePanelSizeFromSettings() {
         String panelSize = Settings.getGameBoardSize();
-        System.out.println(panelSize);
-        switch (panelSize){
+        switch (panelSize) {
             case "30x30":
-                numberOfColumnsInPanel = 30;
+                this.numberOfColumnsInPanel = 30;
                 numberOfRowsInPanel = 30;
                 break;
             case "50x50":
@@ -74,8 +76,8 @@ public class Engine {
                 numberOfRowsInPanel = 50;
                 break;
             case "50x90":
-                numberOfColumnsInPanel = 90;
-                numberOfRowsInPanel = 50;
+                this.numberOfColumnsInPanel = 90;
+                this.numberOfRowsInPanel = 50;
                 break;
         }
     }
@@ -129,5 +131,13 @@ public class Engine {
 
     public void setEndGame(boolean endGame) {
         this.endGame = endGame;
+    }
+
+    public int getNumberOfRowsInPanel() {
+        return numberOfRowsInPanel;
+    }
+
+    public int getNumberOfColumnsInPanel() {
+        return numberOfColumnsInPanel;
     }
 }

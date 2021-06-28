@@ -28,15 +28,15 @@ public class MainMenu {
     private JLabel showNameLabel;
     private JButton startGameButton;
 
-    public MainMenu(){
+    public MainMenu() {
         /**
          * Main menu frame appearance
          */
         mainMenuFrame = new JFrame("Menu");
         mainMenuFrame.setContentPane(mainPanel);
         mainMenuFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        mainMenuFrame.setLocation(500,200);
-        mainMenuFrame.setPreferredSize(new Dimension(250,350));
+        mainMenuFrame.setLocation(500, 200);
+        mainMenuFrame.setPreferredSize(new Dimension(250, 350));
         //Add actions listeners to buttons
         startGameButton.addActionListener(new MenuButtonListener());
         startGameButton.setActionCommand("start");
@@ -63,7 +63,7 @@ public class MainMenu {
         @Override
         public void actionPerformed(ActionEvent e) {
             String command = e.getActionCommand();
-            switch (command){
+            switch (command) {
                 case "start":
                     if (!showNameLabel.getText().equals("please login")) {
                         Engine engine = new Engine();
@@ -102,7 +102,8 @@ public class MainMenu {
             }
         }
     }
-    private void setPlayerName(){
+
+    private void setPlayerName() {
         if (PlayerName.getPlayerName() != null) {
             showNameLabel.setText(PlayerName.getPlayerName());
             showNameLabel.setForeground(Color.GREEN);

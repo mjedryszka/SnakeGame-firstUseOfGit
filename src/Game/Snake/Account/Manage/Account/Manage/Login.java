@@ -11,34 +11,34 @@ public class Login {
     private String passwordFromFile;
     private File file = new File("fileDataBase.txt");
 
-    public Login (String name,String password){
+    public Login(String name, String password) {
         this.name = name;
         this.password = password;
     }
 
-    public boolean checkIfNameExistInFile(){
+    public boolean checkIfNameExistInFile() {
         boolean isNameExist = false;
         try (FileReader fileReader = new FileReader(file);
-        BufferedReader bufferedReader = new BufferedReader(fileReader)){
+             BufferedReader bufferedReader = new BufferedReader(fileReader)) {
             String line = bufferedReader.readLine();
-            while (line != null){
-                String existName = line.split("\\.",3)[0];//takeName
-                if (name.equals(existName)){
-                    passwordFromFile = line.split("\\.",3)[1];//Save password from file in passwordFromFile
+            while (line != null) {
+                String existName = line.split("\\.", 3)[0];//takeName
+                if (name.equals(existName)) {
+                    passwordFromFile = line.split("\\.", 3)[1];//Save password from file in passwordFromFile
                     isNameExist = true;
                 }
                 line = bufferedReader.readLine();
             }
-        } catch (FileNotFoundException exc){
+        } catch (FileNotFoundException exc) {
             exc.printStackTrace();
-        } catch (IOException exc){
+        } catch (IOException exc) {
             exc.printStackTrace();
         }
         return isNameExist;
     }
 
-    public boolean comparePassword(){
-        if (password.equals(passwordFromFile)){
+    public boolean comparePassword() {
+        if (password.equals(passwordFromFile)) {
             return true;
         } else {
             return false;
@@ -48,7 +48,7 @@ public class Login {
     /**
      * Set player name in PlayerName class
      */
-    public void setPlayerName(){
+    public void setPlayerName() {
         PlayerName playerName = new PlayerName();
         playerName.setPlayerName(name);
     }

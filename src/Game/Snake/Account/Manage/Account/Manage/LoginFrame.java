@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by Home on 2021-06-22.
  */
-public class LoginFrame implements ActionListener{
+public class LoginFrame implements ActionListener {
     private JFrame loginFrame;
     private JButton loginButton;
     private JButton backButton;
@@ -21,12 +21,12 @@ public class LoginFrame implements ActionListener{
     private JTextField nameTextField;
     private JPasswordField passwordTextField;
 
-    public LoginFrame(){
+    public LoginFrame() {
         loginFrame = new JFrame("Login");
         loginFrame.setContentPane(loginPanel);
         loginFrame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-        loginFrame.setLocation(500,200);
-        loginFrame.setPreferredSize(new Dimension(250,180));
+        loginFrame.setLocation(500, 200);
+        loginFrame.setPreferredSize(new Dimension(250, 180));
         //Add action listener
         loginButton.addActionListener(this);
         loginButton.setActionCommand("login");
@@ -40,13 +40,13 @@ public class LoginFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
-        switch (command){
+        switch (command) {
             case "login":
                 String name = nameTextField.getText();
                 String password = passwordTextField.getText();
                 Login login = new Login(name, password);
-                if (login.checkIfNameExistInFile()){
-                    if (login.comparePassword()){
+                if (login.checkIfNameExistInFile()) {
+                    if (login.comparePassword()) {
                         loginFrame.dispose();
                         login.setPlayerName();
                         MainMenu mainMenu = new MainMenu();

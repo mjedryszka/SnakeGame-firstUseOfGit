@@ -10,6 +10,10 @@ public class CountPlayerPoints {
         playerPoints = playerPoints + 10;
     }
 
+    public static void resetCounter() {
+        playerPoints = 0;
+    }
+
     public static int getPlayerPoints() {
         return playerPoints;
     }

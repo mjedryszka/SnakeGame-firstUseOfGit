@@ -73,7 +73,7 @@ public class CreateAccount {
     /**
      * Set player name in PlayrName class
      */
-    public void setPlayerName(){
+    public void setPlayerName() {
         PlayerName playerName = new PlayerName();
         playerName.setPlayerName(name);
     }

@@ -32,8 +32,11 @@ public class GenerateCells {
         Random random = new Random();
         boolean cellIsGray = false;
         while (!cellIsGray) {
-            int randomNumberOfColumn = random.nextInt(numberOfColumnsInPanel - 1);
-            int randomNumberOfRow = random.nextInt(numberOfRowsInPanel - 1);
+            /**
+             * Generate random numbers from 1 to numbers of columns and rows -2
+             */
+            int randomNumberOfColumn = 1 + random.nextInt(numberOfColumnsInPanel - 3);
+            int randomNumberOfRow = 1 + random.nextInt(numberOfRowsInPanel - 3);
             Cell cellToCatch = cells[randomNumberOfColumn][randomNumberOfRow];
             /**
              * If on cells list is this graybox then change it to green
@@ -79,8 +82,6 @@ public class GenerateCells {
         /**
          * Create first snake cells
          */
-        System.out.println(firstSnakeCellNumberOfColumn);
-        System.out.println(firstSnakeCellNumberOfRow);
         Cell firstSnakeCell = cells[firstSnakeCellNumberOfColumn][firstSnakeCellNumberOfRow];
         for (int i = 0; i < numberOfSnakeCells; i++) {
             generateSnakeCells(firstSnakeCell);

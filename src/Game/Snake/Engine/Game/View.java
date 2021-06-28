@@ -23,6 +23,8 @@ public class View {
     private JButton backButton;
     private JPanel menuItemsPanel;
     private JLabel bestPlayerLabel;
+    private int numberOfColumnsInPanel;
+    private int numberOfRowInPanel;
 
     /**
      * Create frame
@@ -42,6 +44,11 @@ public class View {
         viewFrame.setVisible(true);
     }
 
+    public void getNumberOfColumnsAndRowsInPanel(int numberOfColumn, int numberOfRow) {
+        this.numberOfColumnsInPanel = numberOfColumn;
+        this.numberOfRowInPanel = numberOfRow;
+    }
+
     public void showPlayerPointsOnGamePanel() {
         yourNumberOfPointsLabelLabel.setText(String.valueOf(CountPlayerPoints.getPlayerPoints()));
     }
@@ -58,7 +65,13 @@ public class View {
 
     public void addActionListenerToButtons(ActionListener buttonListener) {
         startGameButton.addActionListener(buttonListener);
+        startGameButton.setActionCommand("start");
         backButton.addActionListener(buttonListener);
+        backButton.setActionCommand("back");
+    }
+
+    public void closeGameFrame() {
+        viewFrame.dispose();
     }
 
     /**
@@ -73,8 +86,8 @@ public class View {
      */
     public void setUpCells(Cell[][] cells, KeyListener keyListener) {
         gamePanel.removeAll();
-        for (int i = 0; i < 90; i++) {
-            for (int j = 0; j < 50; j++) {
+        for (int i = 0; i < numberOfColumnsInPanel; i++) {
+            for (int j = 0; j < numberOfRowInPanel; j++) {
                 GridBagConstraints gamePanelConstraints = new GridBagConstraints();
                 gamePanelConstraints.gridx = i;
                 gamePanelConstraints.gridy = j;
