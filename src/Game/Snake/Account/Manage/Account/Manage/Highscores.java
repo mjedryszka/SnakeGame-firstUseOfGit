@@ -2,7 +2,6 @@ package Game.Snake.Account.Manage.Account.Manage;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 
 /**
  * Created by Home on 2021-06-23.
